@@ -1,7 +1,9 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -19,6 +21,7 @@ public class UIController : MonoBehaviour
     public GameObject leaderboard;
     public LeaderboardPlayer leaderboardPlayerDisplay;
     public GameObject endScreen;
+    public GameObject pauseScreen;
 
     public TMP_Text getOverheatedText()
     {
@@ -48,5 +51,11 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
+
+    public void ExitRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene(0);
     }
 }

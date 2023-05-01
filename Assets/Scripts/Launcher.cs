@@ -303,6 +303,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom("Test");
         CloseMenus();
         loadingText.text = "Creating Test Room";
+        loadingScreen.SetActive(true);
     }
     public void QuitGame()
     {
