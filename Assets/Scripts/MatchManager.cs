@@ -166,6 +166,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
         }
 
+        UIController.instance.playersText.text = "Players: " + players.Count;
+
         StateCheck();
     }
 

@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public float adsSpeed = 5f;
     public Transform adsOutPoint, adsInPoint;
     public AudioSource footstepSlow, footstepFast;
+    public Camera minimapCamera;
+    public GameObject minimapIndicator;
+    public GameObject minimapImage;
+    public Material blueMaterial, redMaterial;
 
     float verticalRotationStore;
     float activeMoveSpeed;
@@ -63,12 +67,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
             UIController.instance.getWeaponTempSlider().maxValue = maxHeat;
             UIController.instance.getHealthSlider().maxValue = maxHealth;
+            minimapIndicator.GetComponent<Renderer>().material = blueMaterial;
         }
         else
         {
             gunHolder.parent = modelGunpoint;
             gunHolder.localPosition = Vector3.zero;
             gunHolder.localRotation = Quaternion.identity;
+            minimapIndicator.GetComponent<Renderer>().material = redMaterial;
+            minimapCamera.gameObject.SetActive(false);
         }
 
         playerModel.GetComponent<Renderer>().material = skins[photonView.Owner.ActorNumber % skins.Length];
@@ -95,17 +102,21 @@ public class PlayerController : MonoBehaviourPunCallbacks
                 }
             }
 
-            //if (Input.GetKeyDown(KeyCode.Escape))
-            //{
-            //    Cursor.lockState = CursorLockMode.None;
-            //}
-            //else if (Cursor.lockState == CursorLockMode.None)
-            //{
-            //    if (Input.GetMouseButtonDown(0))
-            //    {
-            //        Cursor.lockState = CursorLockMode.Locked;
-            //    }
-            //}
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                if (UIController.instance.mapScreen.activeInHierarchy)
+                {
+                    UIController.instance.mapScreen.SetActive(false);
+                    minimapCamera.fieldOfView = 60f;
+                    minimapImage.SetActive(true);
+                }
+                else
+                {
+                    UIController.instance.mapScreen.SetActive(true);
+                    minimapCamera.fieldOfView = 106f;
+                    minimapImage.SetActive(false);
+                }
+            }
 
             if (!isPaused)
             {

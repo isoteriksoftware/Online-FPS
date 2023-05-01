@@ -22,6 +22,8 @@ public class UIController : MonoBehaviour
     public LeaderboardPlayer leaderboardPlayerDisplay;
     public GameObject endScreen;
     public GameObject pauseScreen;
+    public GameObject mapScreen;
+    public TMP_Text playersText;
 
     public TMP_Text getOverheatedText()
     {

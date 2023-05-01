@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1285908650584842968
 MonoBehaviour:
@@ -47,3 +47,5 @@ MonoBehaviour:
   playerPrefab: {fileID: 7239004639996933334, guid: 086e05d7d8f6bee4c983378445790c6b, type: 3}
   deathEffect: {fileID: 8015856736218342104, guid: 2f3c5c86751156840894ba5f89cef598, type: 3}
   respawnTime: 5
+  blueMaterial: {fileID: 2100000, guid: 56aeca75093607841811d19bd7de60a1, type: 2}
+  redMaterial: {fileID: 2100000, guid: 586963816619c6c45bdbc051f3b7cadb, type: 2}
