@@ -1,7 +1,9 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviourPunCallbacks
     public GameObject minimapIndicator;
     public GameObject minimapImage;
     public Material blueMaterial, redMaterial;
+    public TMP_Text playerLabelText;
+    public Slider playerHealthSlider;
 
     float verticalRotationStore;
     float activeMoveSpeed;
@@ -64,9 +68,12 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (photonView.IsMine)
         {
             playerModel.SetActive(false);
+            playerLabelText.gameObject.SetActive(false);
+            playerHealthSlider.gameObject.SetActive(false);
 
             UIController.instance.getWeaponTempSlider().maxValue = maxHeat;
             UIController.instance.getHealthSlider().maxValue = maxHealth;
+            playerHealthSlider.maxValue = maxHealth;
             minimapIndicator.GetComponent<Renderer>().material = blueMaterial;
         }
         else
@@ -79,6 +86,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
 
         playerModel.GetComponent<Renderer>().material = skins[photonView.Owner.ActorNumber % skins.Length];
+        playerLabelText.text = PhotonNetwork.NickName;
     }
 
     // Update is called once per frame
